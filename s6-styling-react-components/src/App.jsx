@@ -1,13 +1,16 @@
 import AuthInputs from './components/AuthInputs.jsx';
 import Header from './components/Header.jsx';
+import InlineExercise from './components/InlineExercise.jsx';
 
-export default function App() {
+export default function App()
+{
   return (
     <>
       <Header />
       <main>
         <AuthInputs />
       </main>
+      <InlineExercise />
     </>
   );
 }

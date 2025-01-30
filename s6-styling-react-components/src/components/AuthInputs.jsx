@@ -1,19 +1,24 @@
 import { useState } from 'react';
 
-export default function AuthInputs() {
+export default function AuthInputs()
+{
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  function handleInputChange(identifier, value) {
-    if (identifier === 'email') {
+  function handleInputChange(identifier, value)
+  {
+    if (identifier === 'email')
+    {
       setEnteredEmail(value);
-    } else {
+    } else
+    {
       setEnteredPassword(value);
     }
   }
 
-  function handleLogin() {
+  function handleLogin()
+  {
     setSubmitted(true);
   }
 
@@ -24,7 +29,7 @@ export default function AuthInputs() {
     <div id="auth-inputs">
       <div className="controls">
         <p>
-          <label>Email</label>
+          <label className='label'>Email</label>
           <input
             type="email"
             className={emailNotValid ? 'invalid' : undefined}
