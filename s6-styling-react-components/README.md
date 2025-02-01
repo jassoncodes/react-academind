@@ -73,7 +73,8 @@ Then, the classes can be accessed as javascript object:
 
 ## Styled Components (Third-party Package)
 
-Third-pary package that allows "convert" tag elements with css rules applied into "components".
+It's a third-pary package that allows "convert" tag elements with css rules applied into "wrapper components".
+
 **Install**
 
 ```bash
@@ -95,8 +96,43 @@ const ControlContainner = styled.div`
 `;
 ```
 
-This will create a component to be used along with the styles defined. This way the tag "converted" into a styled component can be used as a regular component.
+This will create a component to be used along with the styles defined. This way the "wrapped component" can be used as a regular component.
 
 ```jsx
 <ControlContainer>{/* jsx code*/}</ControlContainer>
 ```
+
+Styled components forwards not only the content within the components but also the built-in and custom props defined.
+
+> 💡 To avoid custom props clash with built-in props, they must be prefixed with a $ sign before the prop name:
+>
+> ```jsx
+> <Label $invalid={emailNotValid}>
+> ```
+
+## Media querys and nested selectors
+
+Media querys and nested selectors can be applied to styled components prefixing the css rule to be applied with the "&" sign.
+
+Pseudo elements can also be included using the same approach
+
+```jsx
+const Buttons = styled.button`
+  .button {
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    color: #1f2937;
+    background-color: #f0b322;
+    border-radius: 6px;
+    border: none;
+  }
+
+  &:hover {
+    background-color: #f0920e;
+  }
+`;
+```
+
+> 💡 Note the use of the "&" prefix without blank space between the pseudo element and the prefix. Otherwise it will target child elements within the styled component
