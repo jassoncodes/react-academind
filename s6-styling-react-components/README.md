@@ -114,7 +114,7 @@ Styled components forwards not only the content within the components but also t
 
 Media querys and nested selectors can be applied to styled components prefixing the css rule to be applied with the "&" sign.
 
-Pseudo elements can also be included using the same approach
+> 💡 Pseudo elements can also be included using the same approach
 
 ```jsx
 const Buttons = styled.button`
@@ -136,3 +136,72 @@ const Buttons = styled.button`
 ```
 
 > 💡 Note the use of the "&" prefix without blank space between the pseudo element and the prefix. Otherwise it will target child elements within the styled component
+
+Styled components also allow to combine components and export them to resuable components
+
+**Advantages**
+
+- Quick & ease to add
+- You continue "thinking in react" by creating configurable style functions
+- Styles are scoped to components which avoid CSS rules clashes
+
+**Disadvantages**
+
+- You need to know CSS
+- No clear separation of React and CSS code
+- You end up with many relatively small "wrapper" components
+
+## Introducing Tailwind CSS
+
+[Tailwind](https://tailwindcss.com/docs/installation/using-vite) is a CSS Framwork designed to use its utilities to apply preset css rules.
+
+**Install**
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+**Configure**
+
+Import tailwind into the vite config file and add it to the plugins sections:
+
+```js
+import { defineConfig } from "vite";
+
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
+```
+
+**Use**
+Tailwind css utilities can be used in any component by adding them into the className prop.
+
+**[Custom styles](https://tailwindcss.com/docs/adding-custom-styles)**
+
+Tailwind CSS 4 no longer need tailwind.config.js file, instead, you define customize styles by adding each custom theme variable directly into the CSS file used in the project, within the <code>@theme</code> directive:
+
+```css
+@import "tailwindcss";
+
+@theme {
+  /* Cutoms font imported from google fonts */
+  --font-title: "Satoshi", "sans-serif";
+
+  --breakpoint-3xl: 1920px;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* ... */
+}
+```
+
+> 💡 Any custom import must preced the <code>@import "tailwindcss";</code> directive
+
+- [Responsive design with Tailwind](https://tailwindcss.com/docs/responsive-design)
