@@ -37,7 +37,7 @@ export default function AuthInputs()
 
   return (
     <div id="auth-inputs">
-      <ControlContainer>
+      <div className="flex flex-col gap-2 mb-6">
         <Input
           invalid={emailNotValid}
           label="Email"
@@ -50,9 +50,9 @@ export default function AuthInputs()
           type="password"
           onChange={(event) => handleInputChange('password', event.target.value)}
         />
-      </ControlContainer>
+      </div>
       <div className="actions">
-        <button type="button" className="text-button">
+        <button type="button" className="text-amber-300 hover:text-amber-600">
           Create a new account
         </button>
         <Button onClick={handleLogin}>Sign In</Button>

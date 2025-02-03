@@ -22,7 +22,8 @@ import "./Header.css";
 **Disadvantages**
 
 - You need to knonw CSS
-- CSS code is not scoped to components, this can lead to rules that might crash across components
+- CSS code is not scoped to components
+- CSS rules may clash across components
 
 ## Inline styles
 
@@ -205,3 +206,16 @@ Tailwind CSS 4 no longer need tailwind.config.js file, instead, you define custo
 > 💡 Any custom import must preced the <code>@import "tailwindcss";</code> directive
 
 - [Responsive design with Tailwind](https://tailwindcss.com/docs/responsive-design)
+
+**Advantages**
+
+- You don't need too much CSS knowledge
+- Rapid development
+- No style clashes between components since you don't define any CSS rules
+- Highly configurable & extensible
+
+**Disadvantages**
+
+- Relatively long class names values
+- Any style changes require editing JSX
+- You end up with many relatively small "wrapper" components OR lots of copy & pasting
