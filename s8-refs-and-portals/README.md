@@ -91,7 +91,9 @@ Refs is not ment to be to manipulate DOM elements, but it can be usefull for sim
 
 ### Forwarding ref to a component
 
-It can be done by defining the refValue using the `useRef` hook and a custom prop in the component that will receive the refValue. This is only possible in newer versions of React, since in older versions it is not allowed to pass ref values as props. In older versions of react you would need to wrap the component function with an imported react function called `forwardRef` and define the ref value as a second parameter of the component function that will receive the ref value:
+It can be done by defining the refValue using the `useRef` hook and a custom prop in the component that will receive the refValue. This is only possible in newer versions of React, since in older versions it is not allowed to pass ref values as props.
+
+In older versions of react you would need to wrap the component function with an imported react function called `forwardRef` and define the ref value as a second parameter of the component function that will receive the ref value:
 
 ```jsx
 const ResultModal_withForwradRef = forwardRef(function ResultModal(

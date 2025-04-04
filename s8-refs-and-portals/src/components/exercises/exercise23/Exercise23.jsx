@@ -1,4 +1,6 @@
 import Input from './Input';
+import "./Exercise23.css"
+import { useRef } from 'react';
 
 export const userData = {
     name: '',
@@ -7,19 +9,21 @@ export const userData = {
 
 export function Exercise23()
 {
+    const nameRef = useRef();
+    const emailRef = useRef();
 
     function handleSaveData()
     {
-        userData.name = 'TODO: Set to actual entered value';
-        userData.email = 'TODO: Set to actual entered value';
+        userData.name = nameRef.current.value
+        userData.email = emailRef.current.value
 
-        console.log(userData);
+        console.log("userData: ", userData);
     }
 
     return (
         <div id="exercise23">
-            <Input type="text" label="Your Name" />
-            <Input type="email" label="Your E-Mail" />
+            <Input type="text" label="Your Name" ref={nameRef} />
+            <Input type="email" label="Your E-Mail" ref={emailRef} />
             <p id="actions">
                 <button onClick={handleSaveData}>Save Data</button>
             </p>
