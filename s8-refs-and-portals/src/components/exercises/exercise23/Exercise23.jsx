@@ -7,7 +7,7 @@ export const userData = {
     email: '',
 };
 
-export function Exercise23()
+function Exercise23()
 {
     const nameRef = useRef();
     const emailRef = useRef();
@@ -31,3 +31,4 @@ export function Exercise23()
     );
 }
 
+export default Exercise23;

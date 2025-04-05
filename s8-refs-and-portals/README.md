@@ -120,3 +120,48 @@ export default ResultModal_withForwradRef;
 ```
 
 This will result in a function component that will include the ref value forwarded and exported.
+
+### Exposing Component APIs via useImperativeHandle Hook
+
+This is a technique that allows to create components that expose its own functions that can be called with help of a ref outside of that component and will still work indepedently of how the component might change in the future as long as that function is called. This technique allows to create the components to be more stable and reusable by keeping the functionality needed to work properly.
+
+This can be achieved by using the `useImperativeHandle` special hook <strong>in the component</strong> that wants to expose such callable function.
+
+`useImperativeHandle` uses two arguments: the forwardedRef object passed to the component and a function that returns an object which groups all the methods and properties that should be exposed by the component.
+
+It also needs a separate refValue for the function that will expose the grouped methods and properties, since the forwardedRef refValue passed to the component will act only as a "connection" to the component so that the exposed methods and properties can be call through that refValue.
+
+```jsx
+import { forwardRef, useImperativeHandle, useRef } from "react";
+
+const ResultModal = forwardRef(({ result, targetTime }, ref) => {
+  const dialog = useRef();
+
+  useImperativeHandle(ref, () => {
+    return {
+      open() {
+        dialog.current.showModal();
+      },
+    };
+  });
+
+  return (
+    <dialog className="result-modal" ref={ref}>
+      <h2>You {result}</h2>
+      <p>
+        The target time was: <strong>{targetTime} seconds</strong>
+      </p>
+      <p>
+        You stopped the timer with <strong>X seconds left</strong>
+      </p>
+      <form method="dialog">
+        <button>Close</button>
+      </form>
+    </dialog>
+  );
+});
+
+export default ResultModal;
+```
+
+With this approach if the code of the component changes, eg isntead of a `<dialog>` it uses a `<div>` tag, as long as the logic inside the `open()` method changes as well, everythng should work properly.
