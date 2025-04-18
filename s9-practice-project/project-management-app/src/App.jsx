@@ -1,7 +1,14 @@
-function App() {
+import { NoProjectSelected } from "./components/NoProjectSelected";
+import { Sidebar } from "./components/Sidebar";
+
+function App()
+{
   return (
     <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
+      {/* <Sidebar /> */}
+      <div className="h-96">
+        <NoProjectSelected />
+      </div>
     </>
   );
 }
