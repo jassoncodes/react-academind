@@ -1,6 +1,6 @@
-import React from 'react'
 
-export const AddProject = ({ ...props }) =>
+
+export const AddButton = ({ label, ...props }) =>
 {
     const defaultClass = "mt-2 px-4 py-2 place-self-center"
 
@@ -16,8 +16,8 @@ export const AddProject = ({ ...props }) =>
     // const sm = props.small ? "w-"
 
     return (
-        <button className={`${defaultClass} ${style} w-10/12`} {...props}>
-            <i className={iconStyle}></i> Create a new project
+        <button className={`${defaultClass} ${style} w-52`} {...props}>
+            <i className={iconStyle}></i> {label}
         </button>
     )
 }

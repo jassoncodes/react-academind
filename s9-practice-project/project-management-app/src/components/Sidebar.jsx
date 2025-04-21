@@ -1,6 +1,6 @@
-import React from 'react'
 import { ProjectItem } from './ProjectItem'
-import { AddProject } from './AddProject'
+import { AddButton } from './AddButton'
+
 
 export const Sidebar = () =>
 {
@@ -12,13 +12,15 @@ export const Sidebar = () =>
                     {/* Sidebar header */}
                     <li>
                         <a href="#" className="h-16 relative flex flex-row justify-center border-transparent">
-                            <h3 className="text-3xl leading-snug font-semibold antialiased tracking-wide truncate text-gray-800 text-capitalize place-self-center">Your Projects</h3>
+                            <h3 className="header-2xl place-self-center">Your Projects</h3>
                         </a>
                     </li>
-                    <AddProject outlined />
-                    <ProjectItem projectName="Project 1" />
-                    <ProjectItem projectName="Project 2" />
-                    <ProjectItem projectName="Project 3" />
+                    <AddButton outlined label="Create a new project" />
+                    <section>
+                        <ProjectItem projectName="Project 1" />
+                        <ProjectItem projectName="Project 2" />
+                        <ProjectItem projectName="Project 3" />
+                    </section>
                 </ul>
                 <p className="mb-0 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; {new Date().getFullYear()}</p>
             </div>

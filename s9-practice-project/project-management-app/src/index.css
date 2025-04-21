@@ -7,3 +7,11 @@
 .sidebar li:hover a span {
     color: white;
 }
+
+.dangerButton {
+    @apply mt-2 px-4 py-2 place-self-center border-2 border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white transition;
+}
+
+.header-2xl {
+    @apply text-2xl leading-snug font-semibold antialiased tracking-wide truncate text-gray-800 uppercase;
+}

@@ -1,5 +1,5 @@
-import React from 'react'
-import { AddProject } from './AddProject'
+import { AddButton } from './AddButton'
+
 
 export const NoProjectSelected = () =>
 {
@@ -8,7 +8,7 @@ export const NoProjectSelected = () =>
             <img src="/logo.png" alt="" className='w-16' />
             <h3 className='text-gray-700 font-bold '>No Project Selected</h3>
             <span className='text-center'>Select a project or get started with a new one</span>
-            <AddProject />
+            <AddButton label="Create a new project" />
         </div>
     )
 }
