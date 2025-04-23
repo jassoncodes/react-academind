@@ -2,7 +2,7 @@ import { ProjectItem } from './ProjectItem'
 import { AddButton } from './AddButton'
 
 
-export const Sidebar = () =>
+export const Sidebar = ({ projects, onClick, ref }) =>
 {
     return (
         //** Sidebar
@@ -17,9 +17,14 @@ export const Sidebar = () =>
                     </li>
                     <AddButton outlined label="Create a new project" />
                     <section>
-                        <ProjectItem projectName="Project 1" />
-                        <ProjectItem projectName="Project 2" />
-                        <ProjectItem projectName="Project 3" />
+                        <ul>
+                            {
+                                projects.map((p) =>
+                                {
+                                    return <ProjectItem key={p.title} project={p} onClick={onClick} />
+                                })
+                            }
+                        </ul>
                     </section>
                 </ul>
                 <p className="mb-0 px-5 py-3 hidden md:block text-center text-xs">Copyright &copy; {new Date().getFullYear()}</p>
