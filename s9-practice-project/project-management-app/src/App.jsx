@@ -36,17 +36,25 @@ function App()
 
   const projectRef = useRef();
 
-
-  function handleClickOnProject(e)
+  function handleClickAddButton()
   {
-    console.log(e);
-    setProjectView(e)
+    setProjectView({
+      title: "",
+      description: "",
+      dueDate: "",
+      tasks: [],
+    });
+  }
+
+  function handleClickOnProject(project)
+  {
+    setProjectView(project)
   };
 
 
   return (
-    <div className="h-screen w-screen flex">
-      <Sidebar projects={projectList} onClick={handleClickOnProject} />
+    <div className="h-screen flex">
+      <Sidebar projects={projectList} onClick={handleClickOnProject} onAddButton={handleClickAddButton} />
       <Dashboard project={projectView} />
     </div>
   );

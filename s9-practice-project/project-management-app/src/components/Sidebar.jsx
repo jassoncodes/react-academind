@@ -2,7 +2,7 @@ import { ProjectItem } from './ProjectItem'
 import { AddButton } from './AddButton'
 
 
-export const Sidebar = ({ projects, onClick, ref }) =>
+export const Sidebar = ({ onClick, onAddButton, projects }) =>
 {
     return (
         //** Sidebar
@@ -15,7 +15,7 @@ export const Sidebar = ({ projects, onClick, ref }) =>
                             <h3 className="header-2xl place-self-center">Your Projects</h3>
                         </a>
                     </li>
-                    <AddButton outlined label="Create a new project" />
+                    <AddButton outlined label="Create a new project" onClick={onAddButton} />
                     <section>
                         <ul>
                             {

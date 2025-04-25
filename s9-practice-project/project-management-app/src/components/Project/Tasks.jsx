@@ -2,7 +2,7 @@ import { AddButton } from "../AddButton"
 import { TaskItem } from "../TaskItem"
 
 
-export const Tasks = ({ tasks }) =>
+export const Tasks = ({ tasks = undefined }) =>
 {
     return (
         <section className="flex flex-col gap-3 my-4">
@@ -11,11 +11,11 @@ export const Tasks = ({ tasks }) =>
                 <input type="text" placeholder='Task description' className="w-8/12 px-2 py-5 h-9 rounded-md border-none" />
                 <AddButton label="Add Task" />
             </div>
-            <div className="bg-gray-100 rounded-md">
+            {tasks && <div className="bg-gray-100 rounded-md">
                 <ul>
                     {tasks.map((task, index) => <TaskItem key={index} task={task} />)}
                 </ul>
-            </div>
+            </div>}
         </section>
     )
 }

@@ -1,7 +1,8 @@
 
 
-export const AddButton = ({ label, outlined, ...props }) =>
+export const AddButton = ({ onClick, label, outlined }) =>
 {
+
     const defaultClass = "px-4 py-2 place-self-center"
 
     const filledClassList = "bg-blue-500 text-white border-none rounded hover:bg-blue-600 transition"
@@ -13,10 +14,8 @@ export const AddButton = ({ label, outlined, ...props }) =>
     const style = outlined ? outlinedClassList : filledClassList
     const iconStyle = outlined ? iconButtonOutlined : iconButtonFilled
 
-    // const sm = props.small ? "w-"
-
     return (
-        <button className={`${defaultClass} ${style} w-52`} {...props}>
+        <button className={`${defaultClass} ${style} w-52`} onClick={onClick} id="newProject">
             <i className={iconStyle}></i> {label}
         </button>
     )
