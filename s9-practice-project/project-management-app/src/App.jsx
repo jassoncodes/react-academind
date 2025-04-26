@@ -8,7 +8,7 @@ const projectItems = [
   {
     "id": 1,
     "title": "Project 1",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos qui blanditiis, ut voluptatum obcaecati repudiandae nostrum reprehenderit, fugiat suscipit quod non porro? Blanditiis libero, pariatur nemo quaerat accusantium quo accusamus!",
+    "description": "Lorem, ",
     "dueDate": "04/30/2025",
     "tasks": ["task 1", "task 2", "task 3", "task 1", "task 2", "task 3", "task 1", "task 2", "task 3"]
   },
@@ -31,14 +31,14 @@ const projectItems = [
 function App()
 {
 
-  const [projectList, setProjectList] = useState(projectItems);
-  const [projectView, setProjectView] = useState();
+  const [projectList, setProjectList] = useState([]);
+  const [project, setProject] = useState();
 
   const projectRef = useRef();
 
   function handleClickAddButton()
   {
-    setProjectView({
+    setProject({
       title: "",
       description: "",
       dueDate: "",
@@ -48,14 +48,43 @@ function App()
 
   function handleClickOnProject(project)
   {
-    setProjectView(project)
+    setProject(project)
   };
 
+  function handleCancel()
+  {
+    setProject();
+  }
+
+  function handleAddProject(project)
+  {
+
+    setProjectList((prev) => [project, ...projectList])
+    setProject(project)
+  }
+
+  function handleDelete(project)
+  {
+    const projectListUpdated = projectList.filter((p) => p.title != project.title)
+    setProjectList((prev) => projectListUpdated)
+    setProject();
+  }
 
   return (
-    <div className="h-screen flex">
-      <Sidebar projects={projectList} onClick={handleClickOnProject} onAddButton={handleClickAddButton} />
-      <Dashboard project={projectView} />
+    <div className="flex h-screen">
+      <Sidebar
+        projects={projectList}
+        onClick={handleClickOnProject}
+        onAddButton={handleClickAddButton}
+        onHome={handleCancel}
+      />
+      <Dashboard
+        project={project}
+        onAddButon={handleClickAddButton}
+        onAddProject={handleAddProject}
+        onCancel={handleCancel}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }

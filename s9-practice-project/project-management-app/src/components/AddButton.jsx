@@ -1,6 +1,6 @@
 
 
-export const AddButton = ({ onClick, label, outlined }) =>
+export const AddButton = ({ onClick, label, outlined, noIcon }) =>
 {
 
     const defaultClass = "px-4 py-2 place-self-center"
@@ -16,7 +16,7 @@ export const AddButton = ({ onClick, label, outlined }) =>
 
     return (
         <button className={`${defaultClass} ${style} w-52`} onClick={onClick} id="newProject">
-            <i className={iconStyle}></i> {label}
+            {!noIcon && <i className={iconStyle}></i>} {label}
         </button>
     )
 }
