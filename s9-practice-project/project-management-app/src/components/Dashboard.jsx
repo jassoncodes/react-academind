@@ -6,7 +6,7 @@ export const Dashboard = ({ project, onAddButon, onAddProject, onCancel, onDelet
 {
     // console.log("Dashboard", ref)
     return (
-        <main className="grid justify-center w-full mt-4">
+        <main className="grid justify-center w-full pt-4 h-auto">
             {!project && <NoProjectSelected onAddButon={onAddButon} />}
             {project && <ProjectLayout project={project} onAddProject={onAddProject} onCancel={onCancel} onDelete={onDelete} />}
         </main>

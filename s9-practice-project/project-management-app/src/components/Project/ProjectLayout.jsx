@@ -32,46 +32,39 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
     }
 
     return (
-        <div className="w-[48rem] p-4 mt-1">
-            <div className='border-b-2 pb-5'>
+        <div className="w-[48rem] p-10 mt-7 bg-neutral-200 rounded-md">
+            <section className='flex flex-col gap-4 flex-grow border-b-2 pb-0'>
                 <div className='grid grid-cols-4'>
 
                     {/* Project/New Project Header Section */}
-                    <div className='col-span-3'>
+                    <div className='col-span-4'>
+                        <div className="flex justify-between">
+                            <h3 className='header-2xl' >{project.title ? project.title : "New Project"}</h3>
+                            {/* Delete/Cancel Project Button */}
+                            <button className='dangerButton' onClick={handleCancel}>
+                                {project.title ? "Delete" : "Cancel"}
+                            </button>
+                        </div>
                         {
-                            project.title ? (
-                                <h3 className='header-2xl'>{project.title}</h3>
-                            ) : (
-                                <div className="flex flex-col gap-4">
-                                    <h3 className='header-2xl'>New Project</h3>
-                                    <input ref={newProjectTitle} type="text" placeholder="Project Title" className="h-12 p-4 rounded-md" />
-                                </div>
+                            !project.title && (
+                                <input ref={newProjectTitle} type="text" placeholder="Project Title" className="h-12 p-4 mt-4 rounded-md w-full" />
                             )
                         }
                     </div>
 
-                    {/* Delete/Cancel Project Button */}
-                    {
-                        //**Todo: Cancel when new project */
-                    }
-                    <div className="col-span-1 text-end">
-                        <button className='dangerButton' onClick={handleCancel}>
-                            {project.title ? "Delete" : "Cancel"}
-                        </button>
-                    </div>
+
 
 
                     {/* Due Date Control */}
                     {project.dueDate && <span className='text-gray-400 font-light font-mono'>Due Date: {project.dueDate}</span>}
 
                 </div>
-
                 {/* Project Description Section */}
                 {
                     project.description ? (
-                        <p>{project.description}</p>
+                        <p className="break-all">{project.description}</p>
                     ) : (
-                        <textarea ref={newProjectDescription} name="description" id="description" placeholder="Description" className="resize-none w-full mt-4 rounded-md p-4" ></textarea>
+                        <textarea ref={newProjectDescription} name="description" id="description" placeholder="Description" className="resize-none w-full rounded-md p-4" ></textarea>
                     )
                 }
 
@@ -79,7 +72,8 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
                 {/* Add project button */}
                 {!project.title && <AddButton noIcon label="Add Project" onClick={addNewProject} />}
 
-            </div>
+
+            </section>
 
             {/* Tasks section */}
             {
