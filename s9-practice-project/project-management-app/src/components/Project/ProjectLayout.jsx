@@ -3,18 +3,18 @@ import { AddButton } from "../AddButton"
 import { Tasks } from "./Tasks"
 
 
-export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
+export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete, ref }) =>
 {
     const newProjectTitle = useRef();
     const newProjectDescription = useRef();
 
-    function addNewProject()
+    function handleAddProject()
     {
         const newProject = {
             title: newProjectTitle.current.value,
             description: newProjectDescription.current.value,
             dueDate: new Date().toLocaleDateString('en-US'),
-            "tasks": []
+            tasks: []
         };
 
         onAddProject(newProject);
@@ -22,24 +22,30 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
 
     function handleCancel()
     {
-        if (!project.title)
+        if (!project)
         {
             onCancel()
         } else
         {
-            onDelete(project)
+            onDelete(project) //**TODO: Check working */
         }
     }
 
     return (
         <div className="w-[48rem] p-10 mt-7 bg-neutral-200 rounded-md">
-            <section className='flex flex-col gap-4 flex-grow border-b-2 pb-0'>
-                <div className='grid grid-cols-4'>
+
+            {console.log("ProjectLayout project", project)}
+            {console.log("ProjectLayout ref", ref.current)}
+
+            <section className='flex flex-col gap-4 flex-grow border-b-2 border-b-gray-400 pb-4'>
+                <div className='grid grid-cols-4 gap-4'>
 
                     {/* Project/New Project Header Section */}
                     <div className='col-span-4'>
                         <div className="flex justify-between">
+
                             <h3 className='header-2xl' >{project.title ? project.title : "New Project"}</h3>
+
                             {/* Delete/Cancel Project Button */}
                             <button className='dangerButton' onClick={handleCancel}>
                                 {project.title ? "Delete" : "Cancel"}
@@ -52,11 +58,8 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
                         }
                     </div>
 
-
-
-
                     {/* Due Date Control */}
-                    {project.dueDate && <span className='text-gray-400 font-light font-mono'>Due Date: {project.dueDate}</span>}
+                    {project.dueDate && <span className='text-gray-400 font-normal font-mono'>Due Date: {project.dueDate}</span>}
 
                 </div>
                 {/* Project Description Section */}
@@ -70,7 +73,7 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
 
 
                 {/* Add project button */}
-                {!project.title && <AddButton noIcon label="Add Project" onClick={addNewProject} />}
+                {!project.title && <AddButton noIcon label="Add Project" onClick={handleAddProject} />}
 
 
             </section>
@@ -79,7 +82,8 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete }) =>
             {
                 //**TODO: TASKS FEATURES
             }
-            <Tasks tasks={project?.tasks || []} />
+            {console.log("project: ", project)}
+            <Tasks tasks={project.tasks} />
         </div>
     )
 }

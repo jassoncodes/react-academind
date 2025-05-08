@@ -36,7 +36,10 @@ function App()
 
   const projectRef = useRef();
 
-  function handleClickAddButton()
+  /**
+   * Open New Project form
+   */
+  function handleClickCreateNewProjectButton()
   {
     setProject({
       title: "",
@@ -44,10 +47,14 @@ function App()
       dueDate: "",
       tasks: [],
     });
+    projectRef.current = ((prev) => project);
+
+    console.log("App projectRef: ", projectRef)
   }
 
   function handleClickOnProject(project)
   {
+    projectRef.current = project;
     setProject(project)
   };
 
@@ -58,12 +65,12 @@ function App()
 
   function handleAddProject(project)
   {
-
     setProjectList((prev) => [project, ...projectList])
+    projectRef.current = project
     setProject(project)
   }
 
-  function handleDelete(project)
+  function handleDelete(project) //**TODO: Check is working */
   {
     const projectListUpdated = projectList.filter((p) => p.title != project.title)
     setProjectList((prev) => projectListUpdated)
@@ -74,16 +81,17 @@ function App()
     <div className="flex h-screen">
       <Sidebar
         projects={projectList}
-        onClick={handleClickOnProject}
-        onAddButton={handleClickAddButton}
+        onClickOnProject={handleClickOnProject}
+        onCreateNewProjectButton={handleClickCreateNewProjectButton}
         onHome={handleCancel}
       />
       <Dashboard
         project={project}
-        onAddButon={handleClickAddButton}
         onAddProject={handleAddProject}
+        onCreateNewProjectButton={handleClickCreateNewProjectButton}
         onCancel={handleCancel}
         onDelete={handleDelete}
+        ref={projectRef}
       />
     </div>
   );
