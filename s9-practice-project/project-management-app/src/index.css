@@ -15,3 +15,8 @@
 .header-2xl {
     @apply text-2xl leading-snug font-semibold antialiased tracking-wide truncate text-gray-800 uppercase whitespace-normal break-all;
 }
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}

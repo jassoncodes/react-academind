@@ -3,17 +3,19 @@ import { AddButton } from "../AddButton"
 import { Tasks } from "./Tasks"
 
 
-export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete, ref }) =>
+
+export const ProjectLayout = ({ project, onAddProject, onAddTask, onClearTask, onCancel, onDelete, ref }) =>
 {
     const newProjectTitle = useRef();
     const newProjectDescription = useRef();
+    const dateRef = useRef();
 
     function handleAddProject()
     {
         const newProject = {
             title: newProjectTitle.current.value,
             description: newProjectDescription.current.value,
-            dueDate: new Date().toLocaleDateString('en-US'),
+            dueDate: dateRef.current.value,
             tasks: []
         };
 
@@ -27,16 +29,12 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete, ref }
             onCancel()
         } else
         {
-            onDelete(project) //**TODO: Check working */
+            onDelete(project)
         }
     }
 
     return (
         <div className="w-[48rem] p-10 mt-7 bg-neutral-200 rounded-md">
-
-            {console.log("ProjectLayout project", project)}
-            {console.log("ProjectLayout ref", ref.current)}
-
             <section className='flex flex-col gap-4 flex-grow border-b-2 border-b-gray-400 pb-4'>
                 <div className='grid grid-cols-4 gap-4'>
 
@@ -53,13 +51,18 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete, ref }
                         </div>
                         {
                             !project.title && (
-                                <input ref={newProjectTitle} type="text" placeholder="Project Title" className="h-12 p-4 mt-4 rounded-md w-full" />
+                                <input ref={newProjectTitle} type="text" placeholder="Project Title" className="p-4 mt-4 rounded-md w-full" />
                             )
                         }
                     </div>
 
                     {/* Due Date Control */}
-                    {project.dueDate && <span className='text-gray-400 font-normal font-mono'>Due Date: {project.dueDate}</span>}
+                    {!project.dueDate &&
+                        <input type="date" name="dueDate" ref={dateRef} className="p-4 cursor-pointer rounded-md text-gray-400" />
+                    }
+
+                    {/* Due Date Label */}
+                    {project.dueDate && <span className='text-gray-400 font-normal font-mono col-span-4'>Due Date: {project.dueDate}</span>}
 
                 </div>
                 {/* Project Description Section */}
@@ -82,8 +85,7 @@ export const ProjectLayout = ({ project, onAddProject, onCancel, onDelete, ref }
             {
                 //**TODO: TASKS FEATURES
             }
-            {console.log("project: ", project)}
-            <Tasks tasks={project.tasks} />
+            <Tasks tasks={project.tasks} onAddTask={onAddTask} onClearTask={onClearTask} />
         </div>
     )
 }

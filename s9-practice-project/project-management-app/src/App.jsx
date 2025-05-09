@@ -47,9 +47,7 @@ function App()
       dueDate: "",
       tasks: [],
     });
-    projectRef.current = ((prev) => project);
-
-    console.log("App projectRef: ", projectRef)
+    projectRef.current = (project);
   }
 
   function handleClickOnProject(project)
@@ -65,12 +63,45 @@ function App()
 
   function handleAddProject(project)
   {
+    setProject(project)
     setProjectList((prev) => [project, ...projectList])
     projectRef.current = project
-    setProject(project)
   }
 
-  function handleDelete(project) //**TODO: Check is working */
+  function handleAddTask(task)
+  {
+    const updatedProject = { ...project, tasks: [task, ...project.tasks] }
+    setProject((prev) => updatedProject);
+    setProjectList(
+      projectList.map((p) =>
+      {
+        if (p.title === project.title && p.description === project.description)
+        {
+          return { ...p, tasks: [task, ...p.tasks] };
+        }
+        return p;
+      }));
+  }
+
+  function handleClearTask(task)
+  {
+    const updatedTaskList = project.tasks.filter((t) => t !== task)
+
+    const updatedProject = { ...project, tasks: updatedTaskList }
+    setProject((prev) => updatedProject);
+    setProjectList(
+      projectList.map((p) =>
+      {
+        if (p.title === project.title && p.description === project.description)
+        {
+          return { ...p, tasks: [task, ...p.tasks] };
+        }
+        return p;
+      }));
+
+  }
+
+  function handleDelete(project) 
   {
     const projectListUpdated = projectList.filter((p) => p.title != project.title)
     setProjectList((prev) => projectListUpdated)
@@ -88,6 +119,8 @@ function App()
       <Dashboard
         project={project}
         onAddProject={handleAddProject}
+        onAddTask={handleAddTask}
+        onClearTask={handleClearTask}
         onCreateNewProjectButton={handleClickCreateNewProjectButton}
         onCancel={handleCancel}
         onDelete={handleDelete}
