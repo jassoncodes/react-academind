@@ -1,4 +1,4 @@
-import { ProjectItem } from './ProjectItem'
+import { SideBarProjectItem } from './SideBarProjectItem'
 import { AddButton } from './AddButton'
 
 
@@ -31,7 +31,7 @@ export const Sidebar = ({ onClickOnProject, onHome, onCreateNewProjectButton, pr
                             {
                                 projects.map((p) =>
                                 {
-                                    return <ProjectItem key={p.title} project={p} onClickOnProject={onClickOnProject} />
+                                    return <SideBarProjectItem key={p.title} project={p} onClickOnProject={onClickOnProject} />
                                 })
                             }
                         </ul>

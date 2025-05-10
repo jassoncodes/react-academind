@@ -1,6 +1,6 @@
 
 
-export const ProjectItem = ({ project, onClickOnProject }) =>
+export const SideBarProjectItem = ({ project, onClickOnProject }) =>
 {
     return (
         <li className='w-10/12 place-self-center cursor-pointer' onClick={() => onClickOnProject(project)}>

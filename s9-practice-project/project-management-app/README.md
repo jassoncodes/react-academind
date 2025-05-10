@@ -13,6 +13,19 @@
 - Acess DOM Elements and Browser APIs with Refs
 - Manage JSX Rendering Positions with Portals
 
+### TODO
+
+- NewProject Form Component with Cancel and Save buttons and its functionalities
+- Reusable components
+- Unify project state into an object instead of managing selected project to view and projectsList separately, e.g:
+  ```jsx
+  useState({
+    selectedProject: undefined,
+    projects: [],
+  });
+  ```
+- Validation inputs empty
+
 ### Important Tailwind CSS Classes Used Throughout This Section
 
 ```jsx
