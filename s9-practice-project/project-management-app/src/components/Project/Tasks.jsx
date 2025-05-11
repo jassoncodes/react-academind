@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { AddButton } from "../AddButton"
-import { TaskItem } from "../TaskItem"
+import { TaskItem } from "./TaskItem"
 
 
 export const Tasks = ({ tasks = undefined, onAddTask, onClearTask }) =>

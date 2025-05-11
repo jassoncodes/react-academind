@@ -24,7 +24,10 @@
     projects: [],
   });
   ```
-- Validation inputs empty
+- Validation for empty inputs
+- Modal for error/success dialog
+- Configure react portal for the modal
+- Configure the forward ref and imperativeHandle for the method that will open the modal component
 
 ### Important Tailwind CSS Classes Used Throughout This Section
 
