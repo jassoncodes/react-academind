@@ -70,7 +70,7 @@ export const ProjectLayout = ({ project, onAddProject, onAddTask, onClearTask, o
                 {/* Project Description Section */}
                 {
                     project.description ? (
-                        <p className="break-all">{project.description}</p>
+                        <p className="break-all whitespace-pre-wrap">{project.description}</p>
                     ) : (
                         <textarea ref={newProjectDescription} name="description" id="description" placeholder="Description" className="resize-none rounded-md p-4" ></textarea>
                     )

@@ -24,12 +24,13 @@
     projects: [],
   });
   ```
-- Validation for empty inputs
-- Modal for error/success dialog
-- Configure react portal for the modal
-- Configure the forward ref and imperativeHandle for the method that will open the modal component
+- Validation for empty inputs and error message via Modal for error/success dialog
+  - Configure react portal for the modal
+  - Configure the forward ref and imperativeHandle for the method that will open the modal component
+- Active item style on sidebar
+- Line break bug on new project
 
-### Important Tailwind CSS Classes Used Throughout This Section
+### Max's Tailwind CSS Classes Used
 
 ```jsx
 <main className="h-screen my-8 flex gap-8">...</main>
