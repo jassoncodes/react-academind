@@ -2,11 +2,11 @@ import { SideBarProjectItem } from './SideBarProjectItem'
 import { AddButton } from './AddButton'
 
 
-export const Sidebar = ({ onClickOnProject, onHome, onCreateNewProjectButton, projects }) =>
+export const Sidebar = ({ onClickOnProject, onHome, onCreateNewProjectButton, projects, selectedProject }) =>
 {
     return (
-        <aside className="flex flex-col flex-shrink-0 left-0 w-64 hover:w-64 bg-neutral-200 h-full text-gray-600 transition-all duration-300 border-none sidebar min-w-14">
-            <div className="overflow-y-auto overflow-x-hidden flex flex-col flex-grow">
+        <aside className="flex flex-col flex-shrink-0 left-0 w-64 hover:w-64 bg-neutral-200 text-gray-600 transition-all duration-300 border-none sidebar min-w-14">
+            <div className="flex flex-col flex-grow gap-4 overflow-y-auto overflow-x-hidden ">
 
                 {/* <!-- Sidebar header --> */}
                 <a className="mt-4 h-16 relative flex flex-row justify-center border-transparent cursor-pointer" onClick={onHome}>
@@ -26,16 +26,14 @@ export const Sidebar = ({ onClickOnProject, onHome, onCreateNewProjectButton, pr
                 {/* Project List Area */}
                 {
                     projects &&
-                    <section>
-                        <ul className="flex flex-grow flex-col py-4 space-y-1">
+                    <ul className='flex flex-col w-60 p-4 self-center'>
+                        {
+                            projects.map((p) =>
                             {
-                                projects.map((p) =>
-                                {
-                                    return <SideBarProjectItem key={p.title} project={p} onClickOnProject={onClickOnProject} />
-                                })
-                            }
-                        </ul>
-                    </section>
+                                return <SideBarProjectItem key={p.id} project={p} onClickOnProject={onClickOnProject} selectedProject={selectedProject} />
+                            })
+                        }
+                    </ul>
                 }
             </div>
 

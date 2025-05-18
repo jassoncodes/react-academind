@@ -16,7 +16,7 @@ export const TaskItem = ({ task, onClearTask }) =>
                 <span ref={taskRef}>
                     {task}
                 </span>
-                <button className="dangerButton w-28" onClick={handleClearTask}>Clear</button>
+                <button className="danger w-28" onClick={handleClearTask}>Clear</button>
             </li>
         </>
     )

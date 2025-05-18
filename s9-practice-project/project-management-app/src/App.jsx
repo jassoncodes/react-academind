@@ -1,131 +1,159 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Sidebar } from "./components/Sidebar";
-import { Dashboard } from "./components/Dashboard";
-
-// const projectItems = [
-//   {
-//     "id": 1,
-//     "title": "Project 1",
-//     "description": "Lorem, ",
-//     "dueDate": "04/30/2025",
-//     "tasks": ["task 1", "task 2", "task 3", "task 1", "task 2", "task 3", "task 1", "task 2", "task 3"]
-//   },
-//   {
-//     "id": 2,
-//     "title": "Project 2",
-//     "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos qui blanditiis, ut voluptatum obcaecati repudiandae nostrum reprehenderit, fugiat suscipit quod non porro? Blanditiis libero, pariatur nemo quaerat accusantium quo accusamus!",
-//     "dueDate": "04/30/2025",
-//     "tasks": ["task 1", "task 2", "task 3"]
-//   },
-//   {
-//     "id": 3,
-//     "title": "Project 3",
-//     "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos qui blanditiis, ut voluptatum obcaecati repudiandae nostrum reprehenderit, fugiat suscipit quod non porro? Blanditiis libero, pariatur nemo quaerat accusantium quo accusamus!",
-//     "dueDate": "04/30/2025",
-//     "tasks": ["task 1", "task 2", "task 3"]
-//   },
-// ]
+import { NewProject } from "./components/Project/NewProject";
+import { NoProjectSelected } from "./components/NoProjectSelected";
+import { Project } from "./components/Project/Project";
+import { SAMPLE_DATA } from "./data";
+import { newId } from "./utils";
 
 function App()
 {
 
-  const [projectList, setProjectList] = useState([]);
-  const [project, setProject] = useState();
+  const [projectState, setProjectState] = useState({
+    selectedProjectId: undefined,
+    projects: [...SAMPLE_DATA]
+  });
 
-  const projectRef = useRef();
-
-  /**
-   * Open New Project Layout in form style
-   */
-  function handleClickCreateNewProjectButton()
+  function handleCreateNewProjectButton()
   {
-    setProject({
-      title: "",
-      description: "",
-      dueDate: "",
-      tasks: [],
+    setProjectState((prev) =>
+    {
+      return {
+        ...prev,
+        selectedProjectId: null
+      };
     });
-    projectRef.current = (project);
-  }
+  };
 
-  function handleClickOnProject(project)
+  function handleClickOnProject(projectId)
   {
-    projectRef.current = project;
-    setProject(project)
+    setProjectState((prev) =>
+    {
+      return {
+        ...prev,
+        selectedProjectId: projectId
+      }
+    })
   };
 
   function handleCancel()
   {
-    setProject();
-  }
+    setProjectState((prev) =>
+    {
+      return {
+        ...prev,
+        selectedProjectId: undefined
+      };
+    });
+  };
 
-  function handleAddProject(project)
+  function handleSaveProject(project)
   {
-    setProject(project)
-    setProjectList((prev) => [project, ...projectList])
-    projectRef.current = project
-  }
+    setProjectState((prev) =>
+    {
+      // generating newProjectId
+      const newProjectId = newId();
+
+      // spreading projectData and including projectId
+      const newProject = {
+        ...project,
+        id: newProjectId
+      };
+
+      // updating state
+      return {
+        selectedProjectId: newProjectId,
+        projects: [
+          ...prev.projects,
+          newProject
+        ]
+      };
+    });
+
+  };
+
+  function handleDeleteProject() 
+  {
+    setProjectState((prev) =>
+    {
+      return {
+        selectedProjectId: undefined,
+        projects: prev.projects.filter((p) => p.id != prev.selectedProjectId)
+      };
+    });
+  };
 
   function handleAddTask(task)
   {
-    const updatedProject = { ...project, tasks: [task, ...project.tasks] }
-    setProject((prev) => updatedProject);
-    setProjectList(
-      projectList.map((p) =>
-      {
-        if (p.title === project.title && p.description === project.description)
+    const newTask = {
+
+      id: newId(),
+      ...task
+    }
+
+    setProjectState((prev) =>
+    {
+      return {
+        ...prev,
+        projects: prev.projects.map((p) =>
         {
-          return { ...p, tasks: [task, ...p.tasks] };
-        }
-        return p;
-      }));
-  }
+          return {
+            ...p,
+            tasks: [newTask, ...p.tasks]
+          };
+        })
+      };
+    });
+  };
 
-  function handleClearTask(task)
+  function handleClearTask(taskId)
   {
-    const updatedTaskList = project.tasks.filter((t) => t !== task)
-
-    const updatedProject = { ...project, tasks: updatedTaskList }
-    setProject((prev) => updatedProject);
-    setProjectList(
-      projectList.map((p) =>
-      {
-        if (p.title === project.title && p.description === project.description)
+    setProjectState((prev) =>
+    {
+      return {
+        ...prev,
+        projects: prev.projects.map((project) =>
         {
-          return { ...p, tasks: [task, ...p.tasks] };
-        }
-        return p;
-      }));
+          if (project.id === prev.selectedProjectId)
+          {
+            return {
+              ...project,
+              tasks: project.tasks.filter((task) => task.id !== taskId)
+            }
+          }
+          return project
+        })
+      }
+    })
+  };
 
-  }
-
-  function handleDelete(project) 
-  {
-    const projectListUpdated = projectList.filter((p) => p.title != project.title)
-    setProjectList((prev) => projectListUpdated)
-    setProject();
-  }
 
   return (
     <div className="flex h-screen">
       <Sidebar
-        projects={projectList}
+        projects={projectState.projects}
+        selectedProject={projectState.selectedProjectId}
         onClickOnProject={handleClickOnProject}
-        onCreateNewProjectButton={handleClickCreateNewProjectButton}
+        onCreateNewProjectButton={handleCreateNewProjectButton}
         onHome={handleCancel}
       />
-      <Dashboard
-        project={project}
-        onAddProject={handleAddProject}
-        onAddTask={handleAddTask}
-        onClearTask={handleClearTask}
-        onCreateNewProjectButton={handleClickCreateNewProjectButton}
-        onCancel={handleCancel}
-        onDelete={handleDelete}
-        ref={projectRef}
-      />
+      {
+        projectState.selectedProjectId === undefined && <NoProjectSelected onCreateNewProjectButton={handleCreateNewProjectButton} />
+      }
+      {
+        projectState.selectedProjectId === null && <NewProject onCancel={handleCancel} onSave={handleSaveProject} />
+      }
+      {
+        (projectState.selectedProjectId !== undefined && projectState.selectedProjectId !== null) &&
+        <Project
+          project={projectState.projects.find(p => p.id === projectState.selectedProjectId)}
+          onDeleteProject={handleDeleteProject}
+          onAddTask={handleAddTask}
+          onClearTask={handleClearTask}
+        />
+      }
     </div>
   );
-}
+};
 
 export default App;

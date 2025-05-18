@@ -15,7 +15,7 @@ export const AddButton = ({ onClick, label, outlined, noIcon }) =>
     const iconStyle = outlined ? iconButtonOutlined : iconButtonFilled
 
     return (
-        <button className={`${defaultClass} ${style} w-52`} onClick={onClick} id="newProject">
+        <button className={`${defaultClass} ${style} w-52`} onClick={onClick}>
             {!noIcon && <i className={iconStyle}></i>} {label}
         </button>
     )

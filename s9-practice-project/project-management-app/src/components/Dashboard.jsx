@@ -1,5 +1,5 @@
 import { NoProjectSelected } from "./NoProjectSelected"
-import { ProjectLayout } from "./Project/ProjectLayout"
+import { Project } from "./Project/Project"
 
 
 export const Dashboard = ({ project, onAddProject, onAddTask, onClearTask, onCreateNewProjectButton, onCancel, onDelete, ref }) =>
@@ -10,7 +10,7 @@ export const Dashboard = ({ project, onAddProject, onAddTask, onClearTask, onCre
 
             {
                 project &&
-                <ProjectLayout
+                <Project
                     project={project}
                     onAddProject={onAddProject}
                     onAddTask={onAddTask}

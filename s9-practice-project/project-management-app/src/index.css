@@ -8,14 +8,33 @@
     color: white;
 }
 
-.dangerButton {
-    @apply px-4 py-2 border-2 border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white transition max-h-14 self-center;
+.primary {
+    @apply px-4 py-2 border-2 border-blue-500 text-blue-600 rounded hover:bg-blue-500 hover:text-white transition max-h-14 self-center
+}
+
+.secondary {
+    @apply px-4 py-2 border-2 border-zinc-400 text-zinc-700 rounded hover:bg-zinc-400 hover:text-white hover:border-zinc-400 transition max-h-14 self-center;
+}
+
+.danger {
+    @apply px-4 py-2 border-2 border-red-400 text-red-500 rounded hover:bg-red-400 hover:text-white transition max-h-14 self-center;
 }
 
 .header-2xl {
     @apply text-2xl leading-snug font-semibold antialiased tracking-wide truncate text-gray-800 uppercase whitespace-normal break-all;
 }
 
+.warning {
+    @apply px-4 py-2 border-2 border-amber-500 text-amber-500 rounded hover:bg-amber-400 hover:text-white transition max-h-14 self-center;
+}
+
+.sideBarProjectItem {
+    @apply px-4 py-2 text-start text-gray-600 border-b-2 border-b-neutral-400 hover:bg-blue-500 transition hover:border-b-blue-700 hover:text-white cursor-pointer;
+}
+
+.selectedProject {
+    @apply px-4 py-2 text-start text-white bg-blue-600 transition border-b-2 border-b-blue-700;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;

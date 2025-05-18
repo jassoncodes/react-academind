@@ -13,23 +13,6 @@
 - Acess DOM Elements and Browser APIs with Refs
 - Manage JSX Rendering Positions with Portals
 
-### TODO
-
-- NewProject Form Component with Cancel and Save buttons and its functionalities
-- Reusable components
-- Unify project state into an object instead of managing selected project to view and projectsList separately, e.g:
-  ```jsx
-  useState({
-    selectedProject: undefined,
-    projects: [],
-  });
-  ```
-- Validation for empty inputs and error message via Modal for error/success dialog
-  - Configure react portal for the modal
-  - Configure the forward ref and imperativeHandle for the method that will open the modal component
-- Active item style on sidebar
-- Line break bug on new project
-
 ### Max's Tailwind CSS Classes Used
 
 ```jsx
