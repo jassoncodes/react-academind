@@ -6,7 +6,7 @@ export const Project = ({ project, onAddTask, onClearTask, onDeleteProject }) =>
 {
 
     return (
-        <div className="w-[48rem] p-10 m-auto mt-7 bg-neutral-200 rounded-md">
+        <main className="w-[48rem] p-10 m-auto mt-7 bg-neutral-200 rounded-md">
             <section className='flex flex-col gap-4 flex-grow border-b-2 border-b-gray-400 pb-4'>
 
                 {/* Project/New Project Header Section */}
@@ -30,10 +30,13 @@ export const Project = ({ project, onAddTask, onClearTask, onDeleteProject }) =>
                 {/* Project Description Section */}
                 <p className="break-all whitespace-pre-wrap">{project.description}</p>
 
+                {/* Due Date Label */}
+                <span className='text-gray-400 font-normal font-mono text-xs text-end col-span-4'>Created At: {project.createdAt.toString()}</span>
+
             </section>
 
             {/* Tasks section */}
             <Tasks tasks={project.tasks} onAddTask={onAddTask} onClearTask={onClearTask} />
-        </div>
+        </main>
     )
 }

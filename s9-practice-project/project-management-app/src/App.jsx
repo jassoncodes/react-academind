@@ -52,7 +52,7 @@ function App()
     setProjectState((prev) =>
     {
       // generating newProjectId
-      const newProjectId = newId();
+      const newProjectId = newId()
 
       // spreading projectData and including projectId
       const newProject = {
@@ -64,8 +64,8 @@ function App()
       return {
         selectedProjectId: newProjectId,
         projects: [
-          ...prev.projects,
-          newProject
+          newProject,
+          ...prev.projects
         ]
       };
     });
@@ -129,7 +129,7 @@ function App()
 
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       <Sidebar
         projects={projectState.projects}
         selectedProject={projectState.selectedProjectId}

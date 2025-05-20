@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import Input from '../Input.jsx';
 import { Modal } from '../Modal.jsx';
+import { formattedDate } from '../../utils.js';
 
 
 export const NewProject = ({ onSave, onCancel, modalRef }) =>
@@ -10,15 +11,7 @@ export const NewProject = ({ onSave, onCancel, modalRef }) =>
     const projectDescription = useRef();
     const modal = useRef();
 
-    const formattedDate = (date) =>
-    {
-        return new Date(date).toLocaleDateString("en-US", {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            weekday: 'long'
-        });
-    };
+
 
     function handleSave()
     {
@@ -35,6 +28,7 @@ export const NewProject = ({ onSave, onCancel, modalRef }) =>
             title: projectTitle.current.value,
             description: projectDescription.current.value,
             dueDate: formattedDate(dueDate.current.value),
+            createdAt: formattedDate(new Date()),
             tasks: []
         });
 

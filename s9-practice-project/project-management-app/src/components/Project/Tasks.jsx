@@ -32,7 +32,7 @@ export const Tasks = ({ tasks = undefined, onAddTask, onClearTask }) =>
                 buttonClass="warning"
                 ref={modal}
             />
-            <section className="flex flex-col gap-4 my-4">
+            <section className="flex flex-col gap-4">
                 <h3 className="header-2xl">Tasks</h3>
                 <div className="flex justify-between place-items-center rounded-md">
                     <input
