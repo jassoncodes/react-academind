@@ -57,6 +57,7 @@ export const SAMPLE_DATA = [
         id: newId(),
         taskDescription: "task 3",
       },
+<<<<<<< HEAD
       {
         id: newId(),
         taskDescription: "task 1",
@@ -69,11 +70,13 @@ export const SAMPLE_DATA = [
         id: newId(),
         taskDescription: "task 3",
       },
+=======
+>>>>>>> 888b9f8 (update)
     ],
   },
   {
     id: newId(),
-    title: "Project 2",
+    title: `Project 2`,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ut exercitationem et. Iusto, reprehenderit facilis tenetur impedit, illum itaque eaque beatae quae officia consequatur sint, soluta porro voluptatibus quasi consectetur.",
     dueDate: formattedDate(new Date()),
