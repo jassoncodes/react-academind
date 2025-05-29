@@ -177,4 +177,6 @@ const ctxValue = {
 
 ### Practice project: migrate the project management app to use the Context API
 
+## Outsourcing Context & State into a Separate Provider Component
+
 ## React Hook useReducer to manage more complex state
