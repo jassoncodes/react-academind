@@ -23,6 +23,8 @@ function App()
           ))}
         </Shop>
       </CartContextProvider>
+
+      {/* exerciese26 section */}
       <ThemeContextProvider>
         <Page />
       </ThemeContextProvider>

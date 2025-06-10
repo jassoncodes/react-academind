@@ -10,7 +10,7 @@ We have an app with multiple hierarchical components with state shared between t
 
 ## Section goal
 
-Build an online shopping cart to add, remove, and update products in a cart.
+Build an online shopping cart to add, remove, and update products in a cart
 
 ## Component Composition to solve Prop Drilling
 
@@ -160,7 +160,7 @@ export default function Cart({ onUpdateItemQuantity }) {
 }
 ```
 
-> Although the default approach approach to use to access a context value is by using the useContext hook because is easier, it provides a cleaner code and is easier to read.
+> Although the default approach to access a context value is by using the useContext hook because is easier, it provides a cleaner code and is easier to read.
 
 ### Link the context to the state
 
@@ -179,4 +179,13 @@ const ctxValue = {
 
 ## Outsourcing Context & State into a Separate Provider Component
 
+A common practice when using context in a react app is to outsource the code of the context provider into a separate file and be exported to use throughout the entire application, since its very likely that the source code increase over time and handle multiple states values, therefore the context creation and sharing can be defined in the same file along with the context provider component function.
+
+```bash
+│   └── store
+│       └── shopping-cart-context.jsx
+```
+
 ## React Hook useReducer to manage more complex state
+
+A reducer is a function that reduce one or more complex values to a simpler one.
