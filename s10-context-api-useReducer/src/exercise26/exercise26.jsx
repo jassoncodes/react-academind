@@ -1,6 +1,5 @@
 import Page from "./Page";
 import ThemeContextProvider from "./ThemeContextProvider";
-import './exercise26.css'
 
 
 function Exercise26()

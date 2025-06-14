@@ -5,7 +5,7 @@ import Product from './components/Product.jsx';
 import CartContextProvider from './store/shopping-cart-context.jsx';
 import ThemeContextProvider from './exercise26/ThemeContextProvider.jsx';
 import Page from './exercise26/Page.jsx';
-import './exercise26/exercise26.css'
+import { Counter } from './exercise27/exercise27.jsx';
 
 function App()
 {
@@ -24,10 +24,13 @@ function App()
         </Shop>
       </CartContextProvider>
 
-      {/* exerciese26 section */}
+      {/* exercise26 section */}
       <ThemeContextProvider>
         <Page />
       </ThemeContextProvider>
+
+      {/* exercise27 section */}
+      <Counter />
     </>
   );
 }

@@ -7,7 +7,7 @@ export default function Page()
 {
     const { theme } = React.useContext(ThemeContext)
     return (
-        <div id="app" className={theme}>
+        <div id="page" className={theme}>
             <Header />
 
             <article>

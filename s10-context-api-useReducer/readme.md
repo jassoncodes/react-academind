@@ -188,4 +188,22 @@ A common practice when using context in a react app is to outsource the code of 
 
 ## React Hook useReducer to manage more complex state
 
-A reducer is a function that reduce one or more complex values to a simpler one.
+A reducer is a function that reduce one or more complex values to a simpler one. The `useReducer` Hook is similar to the `useState` Hook. It allows for custom state logic. If you find yourself keeping track of multiple pieces of state that rely on complex logic, `useReducer` may be useful.
+
+## How to use it?
+
+The useReducer Hook accepts two arguments:
+
+```jsx
+  useReducer(<reducer>, <initialState>)
+```
+
+The `reducer` function contains your custom state logic and the `initialState` can be a simple value but generally will contain an object. The `reducer` argument function accepts two arguments: `state` and `action`:
+
+```jsx
+function reducer(state, action) {
+  // reducer logic
+}
+```
+
+The `useReducer` Hook returns the current stateand a dispatchmethod.
