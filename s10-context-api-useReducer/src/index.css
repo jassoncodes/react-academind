@@ -298,11 +298,19 @@ h1 {
 #page.light {
   background: linear-gradient(#e5d9f1, #e5d9f1);
   color: #180d27;
+
+  h1 {
+    color: #180d27;
+  }
 }
 
 #page.dark {
   background: linear-gradient(#341f4f, #2a0c52);
   color: #e5d9f1;
+
+  h1 {
+    color: #e5d9f1;
+  }
 }
 
 header {
@@ -338,15 +346,15 @@ header button {
   box-sizing: border-box;
 }
 
-/* div#counter {
-  margin: 0;
+div#counter {
+  margin: 0 auto;
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(#180d27, #0c0219);
   color: #e5d9f1;
-  min-height: 100vh;
-} */
+  min-height: auto;
+}
 
 #counter {
   margin: 2rem auto;
@@ -358,11 +366,12 @@ header button {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-h1 {
+div#counter h1 {
   letter-spacing: 0.15rem;
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
+  color: white;
 }
 
 #actions {
